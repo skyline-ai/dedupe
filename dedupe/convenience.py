@@ -53,11 +53,12 @@ def consoleLabel(deduper):  # pragma: no cover
         n_distinct = (len(deduper.training_pairs['distinct']) +
                       sum(label == 'distinct' for _, label in examples_buffer))
 
-        for pair in record_pair:
-            for field in fields:
-                line = "%s : %s" % (field, pair[field])
-                print(line, file=sys.stderr)
-            print(file=sys.stderr)
+        print(file=sys.stderr)
+        for field in fields:
+            line = "%s: '%s' VS '%s'" % (field, record_pair[0][field], record_pair[1][field])
+            print(line, file=sys.stderr)
+
+        print(file=sys.stderr)
 
         print("{0}/10 positive, {1}/10 negative".format(n_match, n_distinct),
               file=sys.stderr)
